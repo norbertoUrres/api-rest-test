@@ -1,0 +1,23 @@
+{
+  "name": "api-rest-test",
+  "version": "1.0.0",
+  "description": "Test despliegue de API Rest in GCP",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/norbertoUrres/api-rest-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/norbertoUrres/api-rest-test/issues"
+  },
+  "homepage": "https://github.com/norbertoUrres/api-rest-test#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

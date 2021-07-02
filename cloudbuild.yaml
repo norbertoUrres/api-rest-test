@@ -1,0 +1,26 @@
+steps:
+  # build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["build", "-t", "gcr.io/api-rest-test-318611/api-rest-test:${SHORT_SHA}", "."]
+    # push the container image to Container Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/api-rest-test-318611/api-rest-test"]
+    # deploy container image to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "beta",
+        "run",
+        "deploy",
+        "api-rest-test",
+        "--image",
+        "gcr.io/api-rest-test-318611/api-rest-test:${SHORT_SHA}",
+        "--region",
+        "us-central1",
+        "--allow-unauthenticated",
+      ]
+    env:
+      - "PORT=8080"
+images:
+  - gcr.io/api-rest-test-318611/api-rest-test
