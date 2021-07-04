@@ -1,5 +1,7 @@
-import { ToDoList } from "./sample";
+import CheckHelper from "./utils/CheckHelper";
+
 import User from "./models/Users";
+import Check from "./models/Checks";
 
 export const resolvers = {
     Query: {
@@ -9,19 +11,26 @@ export const resolvers = {
         saludar(_, { name}) {
             return `Hola ${name}`;
         },
-        toDoListItems: () => {
-            return ToDoList;
-        },
         async users() {
             return await User.find();
+        },
+        async checks() {
+            return await Check.find();
+        },
+        async check(_, args) {
+            return await Check.findOne(args);
         }
     },
     Mutation: {
-        createItem(_, { input }) {
-            input._id = ToDoList.length;
-            ToDoList.push(input);
-            return input;
+        async createCheck(_, { input }) {
+            input.result = CheckHelper.testEval(input.dna);
+            const newCheck = new Check(input);
+            await newCheck.save();
+            return newCheck;
         },
+
+
+
         async createUser(_, { input }) {
             const newUser = new User(input);
             await newUser.save();

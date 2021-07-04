@@ -5,39 +5,48 @@ const typeDefs = `
     type Query {
         hello: String
         saludar(name: String!): String
-        toDoListItems: [ToDoItem]
         users: [User]
-    }
-
-    type ToDoItem {
-        _id: ID
-        title: String!
-        description: String!
-        sorter: Int
-    }
-
-    input ToDoItemInput {
-        title: String!
-        description: String!
-        sorter: Int
+        checks: [Check]
+        check(name: String, country: String): Check
     }
 
     type Mutation {
-        createItem(input: ToDoItemInput): ToDoItem
+        createCheck(input: CheckInput): Check
         createUser(input: UserInput): User
         deleteUser(_id: ID): User
         updateUser(_id: ID, input: UserInput): User
     }
 
+    input CheckInput {
+        name: String!
+        country: String!
+        dna: [String!]
+        result: String
+    }
+
+    type Check {
+        _id: ID
+        name: String!
+        country: String!
+        dna: [String!]
+        result: String
+    }
+
     input UserInput {
         firstName: String!
         lastName: String!
+        country: String!
+        dna: [String]
+        result: String
     }
 
     type User {
         _id: ID
         firstName: String!
         lastName: String!
+        country: String!
+        dna: [String]
+        result: String
     }
 `;
 

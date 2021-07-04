@@ -1,19 +1,19 @@
 import { Schema, model } from "mongoose";
 
-const userSchema = new Schema({
-    firstName: {
+const checkSchema = new Schema({
+    name: {
         type: String,
         require: true
     },
-    lastName: {
+    country: {
         type: String,
         require: true
     },
-    country: String,
     dna: [{
-        type: String
+        type: String,
+        require: true
     }],
     result: String
 });
 
-export default model("User", userSchema);
+export default model("Check", checkSchema);
