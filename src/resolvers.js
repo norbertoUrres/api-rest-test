@@ -1,6 +1,5 @@
 import { ToDoList } from "./sample";
 import User from "./models/Users";
-import Users from "./models/Users";
 
 export const resolvers = {
     Query: {
